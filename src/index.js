@@ -43,8 +43,8 @@ const DB_HOST = 'mongo';
 const URI = `mongodb://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}`;
 mongoose
     .connect(URI)
-    .then(() => console.log('connected to db ...'))
-    .catch((err) => console.log('failed to connect to db : ', err));
+    .then(() => console.log('connected to mongo db ...'))
+    .catch((err) => console.log('failed to connect to mongo db : ', err));
 
 
 app.get('/', (req, res) => {
