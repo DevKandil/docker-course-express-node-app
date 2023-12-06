@@ -49,7 +49,7 @@ mongoose
 
 app.get('/', (req, res) => {
     redisClient.set('products', 'Pro Git Book');
-    res.send(`<h2>Hello From Node.js App! - env = dev</h2>`);
+    res.send(`<h2>Hello From Simple Node.js App! - Environment = Production</h2>`);
 });
 
 app.get('/data', async (req, res) => {
