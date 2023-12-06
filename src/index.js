@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const redis = require('redis');
+const os = require('os');
 // const { Client } = require('pg');
 
 // ## init app
@@ -49,6 +50,7 @@ mongoose
 
 app.get('/', (req, res) => {
     redisClient.set('products', 'Pro Git Book');
+    console.log(`Traffic From ${os.hostname}`);
     res.send(`<h2>Hello From Simple Node.js App! - Environment = Production</h2>`);
 });
 
