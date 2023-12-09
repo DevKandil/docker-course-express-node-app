@@ -56,6 +56,16 @@ services:
     depends_on:
       - node-app
 
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    environment:
+      - WATCHTOWER_TRACE=true
+      - WATCHTOWER_POLL_INTERVAL=30
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --run-once docker-course-express-node-app_node-app_1
+
 
 volumes:
   mongo-db:
