@@ -28,6 +28,8 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
+    labels:
+      - "com.centurylinklabs.watchtower.enable=false"
 
   # mongo-express:
   #   image: mongo-express
@@ -46,6 +48,8 @@ services:
     image: redis
     depends_on:
       - mongo
+    labels:
+      - "com.centurylinklabs.watchtower.enable=false"
 
   nginx:
     image: nginx:stable-alpine
@@ -55,6 +59,8 @@ services:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - node-app
+    labels:
+      - "com.centurylinklabs.watchtower.enable=false"
 
   watchtower:
     image: containrrr/watchtower
@@ -62,10 +68,9 @@ services:
     environment:
       - WATCHTOWER_TRACE=true
       - WATCHTOWER_POLL_INTERVAL=30
+      - WATCHTOWER_LABEL_ENABLE=true
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    command: --run-once docker-course-express-node-app_node-app_1
-
 
 volumes:
   mongo-db:
